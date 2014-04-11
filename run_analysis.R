@@ -79,7 +79,7 @@ X.mean.std.subject.activityName <- cbind(X[,feature.id.mean.std], subjects, acti
 tidy.by.activity.and.subject <- aggregate(formula=.~activityName+subjectId, data=X.mean.std.subject.activityName, FUN=mean)
 # NOW WE HAVE A TIDY DATA SET WITH THE AVERAGES FOR EACH 'mean' and 'std' MEASUREMENT PER ACTIVITY NAME AND SUBJECT ID.
 # In SQL it would be something like:
-# 'select activityName, subjectId, avg(tBodyAcc.mean.X), avg(tBodyAcc.mean.Y) /*some more avg(...) here*/ from someTableName by activityName, subjectId;'
+# 'select activityName, subjectId, avg(tBodyAcc.mean.X), avg(tBodyAcc.mean.Y) /*some more avg(...) here*/ from someTableName group by activityName, subjectId;'
 
 # write tidy data set to file:
 write.table(tidy.by.activity.and.subject, "means_by_activity_subject.dat", row.names=FALSE)
